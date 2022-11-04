@@ -3,6 +3,7 @@ package ru.pochinka.pet.project.bankproject.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 
 /**
  * entity of table CARDS
@@ -15,7 +16,7 @@ public class CardEntity extends Persistable {
      * bank card of user
      */
     @Column(name = "CARD_NUMBER", nullable = false)
-    private Integer cardNumber;
+    private BigInteger cardNumber;
 
     /**
      * card account number

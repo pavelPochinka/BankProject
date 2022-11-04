@@ -1,17 +1,20 @@
 package ru.pochinka.pet.project.bankproject.enums;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
 @Getter
 public enum Currency {
+
     RU("RU", "РУБЛИ"),
     EU("EU","ЕВРО"),
     DOL("DOL","ДОЛЛАР");
 
 
-    private String name;
-    private String displayName;
+    private final String name;
+    private final String displayName;
 
+    Currency(String name, String displayName) {
+        this.name = name;
+        this.displayName = displayName;
+    }
 }
