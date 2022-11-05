@@ -1,14 +1,21 @@
 package ru.pochinka.pet.project.bankproject.entity;
 
 import lombok.Data;
+import ru.pochinka.pet.project.bankproject.enums.Currency;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Data
 @Entity(name = "COUNTS")
 public class CountEntity extends Persistable {
 
+    /**
+     * account number
+     */
+    @Column(name = "COUNT", nullable = false)
+    private BigInteger count;
 
     /**
      * amount of money
@@ -16,9 +23,10 @@ public class CountEntity extends Persistable {
     @Column(name = "AMOUNT", nullable = false)
     private BigDecimal amount;
 
-    @OneToOne(
-            cascade = CascadeType.ALL
-    )
-    @JoinColumn(name = "CURRENCY", referencedColumnName="CURRENCY")
-    private CurrencyEntity currency;
+    /**
+     * type of currency
+     */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "CURRENCY", nullable = false)
+    private Currency currency;
 }
