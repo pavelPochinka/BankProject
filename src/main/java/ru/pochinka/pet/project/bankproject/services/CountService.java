@@ -15,11 +15,11 @@ public class CountService {
 
     private static final String NOT_FOUND_COUNT = "Count with number %s not found!";
     private final CountRepository countRepository;
-    private final CountEntityToDtoMapper countEntityToDtoMapper;
+    private final CountEntityToDtoMapper countMapper;
 
-    public CountService(CountRepository countRepository, CountEntityToDtoMapper countEntityToDtoMapper){
+    public CountService(CountRepository countRepository, CountEntityToDtoMapper countMapper){
         this.countRepository = countRepository;
-        this.countEntityToDtoMapper= countEntityToDtoMapper;
+        this.countMapper = countMapper;
     }
 
     public CountDto getByCount(String countStr){
@@ -31,6 +31,6 @@ public class CountService {
         }
         CountEntity count = countRepository.findByCount(countNumeric)
                 .orElseThrow(() -> new NotFoundException(String.format(NOT_FOUND_COUNT, countStr)));
-        return countEntityToDtoMapper.sourceToDestination(count);
+        return countMapper.sourceToDestination(count);
     }
 }
