@@ -13,4 +13,6 @@ import java.math.BigInteger;
 public class CardDto {
 
     private BigInteger cardNumber;
+
+    private CountDto count;
 }
