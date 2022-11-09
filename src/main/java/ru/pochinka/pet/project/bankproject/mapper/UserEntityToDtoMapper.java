@@ -6,6 +6,7 @@ import org.mapstruct.Named;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.pochinka.pet.project.bankproject.dto.CardDto;
 import ru.pochinka.pet.project.bankproject.dto.UserDto;
+import ru.pochinka.pet.project.bankproject.dto.request.RequestUserDto;
 import ru.pochinka.pet.project.bankproject.entity.CardEntity;
 import ru.pochinka.pet.project.bankproject.entity.UserEntity;
 
@@ -28,4 +29,15 @@ public abstract class UserEntityToDtoMapper {
                 .map(card -> cardMapper.sourceToDestination(card))
                 .collect(Collectors.toList());
     }
+
+//    @Named("mapCardsToEntity")
+//    protected List<CardEntity> mapCardsToEntity(List<CardDto> cards){
+//        return cards
+//                .stream()
+//                .map(card -> cardMapper.destinationToSource(card))
+//                .collect(Collectors.toList());
+//    }
+//
+    @Mapping(target = "cards", ignore = true)
+    public abstract UserEntity destinationToSource(RequestUserDto source);
 }

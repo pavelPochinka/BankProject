@@ -2,7 +2,10 @@ package ru.pochinka.pet.project.bankproject.conroller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.pochinka.pet.project.bankproject.dto.request.RequestUserDto;
 import ru.pochinka.pet.project.bankproject.dto.UserDto;
+import ru.pochinka.pet.project.bankproject.dto.response.ResponseDto;
+import ru.pochinka.pet.project.bankproject.facade.UserFacade;
 import ru.pochinka.pet.project.bankproject.services.UserService;
 
 import java.util.List;
@@ -12,10 +15,13 @@ import java.util.Map;
 @RequestMapping("user")
 public class UserController {
 
+    private static final String SUCCESSFUL_CREATING_USER ="user was created";
     private final UserService userService;
+    private final UserFacade userFacade;
 
-    public UserController(UserService userService){
+    public UserController(UserService userService, UserFacade userFacade){
         this.userService = userService;
+        this.userFacade = userFacade;
     }
 
     @GetMapping("/get/byFirstName/{firstName}")
@@ -34,4 +40,13 @@ public class UserController {
         String secondName = firstAndSecondName.get("secondName");
         return ResponseEntity.ok(userService.getByFirstNameAndSecondName(firstName,secondName));
     }
+
+    @PostMapping(
+            value = "/createUser", consumes = "application/json", produces = "application/json")
+    public @ResponseBody ResponseEntity<ResponseDto> addUser(@RequestBody RequestUserDto user){
+        userFacade.saveNewUser(user);
+        return ResponseEntity.ok(new ResponseDto(SUCCESSFUL_CREATING_USER));
+    }
+
+
 }

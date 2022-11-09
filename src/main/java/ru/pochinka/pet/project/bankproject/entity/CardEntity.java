@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigInteger;
+import java.util.UUID;
 
 /**
  * entity of table CARDS
@@ -17,6 +18,12 @@ public class CardEntity extends Persistable {
      */
     @Column(name = "CARD_NUMBER", nullable = false)
     private BigInteger cardNumber;
+
+    /**
+     * user id
+     */
+    @Column(name = "USER_ID", nullable = false)
+    private UUID userId;
 
     /**
      * card account number

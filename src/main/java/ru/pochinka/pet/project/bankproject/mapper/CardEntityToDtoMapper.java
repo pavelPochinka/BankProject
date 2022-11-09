@@ -14,4 +14,8 @@ public abstract class CardEntityToDtoMapper {
 
     @Mapping(target = "count", expression = "java(countMapper.sourceToDestination(source.getCount()))")
     public abstract CardDto sourceToDestination(CardEntity source);
+
+    @Mapping(target = "count", expression = "java(countMapper.destinationToSource(source.getCount()))")
+    public abstract CardEntity destinationToSource(CardDto source);
+
 }

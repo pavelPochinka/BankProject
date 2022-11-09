@@ -13,8 +13,20 @@ public interface CountEntityToDtoMapper {
     @Mapping(target = "currency", source = "currency", qualifiedByName = "mapCurrency")
     CountDto sourceToDestination(CountEntity source);
 
+    @Mapping(target = "currency", source = "currency", qualifiedByName = "mapCurrencyEnum")
+    CountEntity destinationToSource(CountDto source);
+
     @Named("mapCurrency")
     default String mapCurrency(Currency currency) {
         return currency.getDisplayName();
+
     }
+
+    @Named("mapCurrencyEnum")
+    default Currency mapCurrencyEnum(String currency){
+        return Currency.valueOf(currency);
+    }
+
+
+
 }

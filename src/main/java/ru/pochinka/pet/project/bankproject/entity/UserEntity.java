@@ -20,7 +20,7 @@ public class UserEntity extends Persistable {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "USER_ID", referencedColumnName = "OBJECT_ID")
     private List<CardEntity> cards;
 
     /**

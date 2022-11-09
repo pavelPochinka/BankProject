@@ -1,6 +1,7 @@
 package ru.pochinka.pet.project.bankproject.services;
 
 import org.springframework.stereotype.Service;
+import ru.pochinka.pet.project.bankproject.dto.request.RequestUserDto;
 import ru.pochinka.pet.project.bankproject.dto.UserDto;
 import ru.pochinka.pet.project.bankproject.entity.UserEntity;
 import ru.pochinka.pet.project.bankproject.exception.NotValidStringException;
@@ -8,6 +9,8 @@ import ru.pochinka.pet.project.bankproject.mapper.UserEntityToDtoMapper;
 import ru.pochinka.pet.project.bankproject.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,4 +64,18 @@ public class UserService {
                 .map(userMapper::sourceToDestination)
                 .collect(Collectors.toList());
     }
+
+    public Optional<UserEntity> getUserById(UUID userId){
+        return userRepository.findByObjectId(userId);
+    }
+
+    public UserEntity save(UserEntity user){
+        return userRepository.save(user);
+    }
+
+    public UserEntity createUser(RequestUserDto newUser){
+        UserEntity user = userMapper.destinationToSource(newUser);
+        return userRepository.save(user);
+    }
+
 }
