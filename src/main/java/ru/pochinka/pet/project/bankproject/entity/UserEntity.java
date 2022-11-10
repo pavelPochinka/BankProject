@@ -2,7 +2,10 @@ package ru.pochinka.pet.project.bankproject.entity;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 
@@ -16,7 +19,8 @@ public class UserEntity extends Persistable {
     /**
      * cards of owner
      */
-    @OneToMany(mappedBy="userId")
+    @OneToMany(mappedBy="userId",
+    cascade = CascadeType.ALL)
     private List<CardEntity> cards;
 
     /**

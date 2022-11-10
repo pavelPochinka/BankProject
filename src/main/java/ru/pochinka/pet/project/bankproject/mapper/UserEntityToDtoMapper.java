@@ -22,6 +22,9 @@ public abstract class UserEntityToDtoMapper {
     @Mapping(target = "cards", source = "cards", qualifiedByName = "mapCards")
     public abstract UserDto sourceToDestination(UserEntity source);
 
+    @Mapping(target = "cards", ignore = true)
+    public abstract UserEntity destinationToSource(RequestUserDto source);
+
     @Named("mapCards")
     protected List<CardDto> mapCards(List<CardEntity> cards) {
         return cards
@@ -29,15 +32,4 @@ public abstract class UserEntityToDtoMapper {
                 .map(card -> cardMapper.sourceToDestination(card))
                 .collect(Collectors.toList());
     }
-
-//    @Named("mapCardsToEntity")
-//    protected List<CardEntity> mapCardsToEntity(List<CardDto> cards){
-//        return cards
-//                .stream()
-//                .map(card -> cardMapper.destinationToSource(card))
-//                .collect(Collectors.toList());
-//    }
-//
-    @Mapping(target = "cards", ignore = true)
-    public abstract UserEntity destinationToSource(RequestUserDto source);
 }

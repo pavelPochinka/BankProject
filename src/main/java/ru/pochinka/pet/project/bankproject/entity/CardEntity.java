@@ -2,7 +2,12 @@ package ru.pochinka.pet.project.bankproject.entity;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import java.math.BigInteger;
 import java.util.UUID;
 

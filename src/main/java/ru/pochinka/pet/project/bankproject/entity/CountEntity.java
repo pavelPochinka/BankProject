@@ -3,7 +3,10 @@ package ru.pochinka.pet.project.bankproject.entity;
 import lombok.Data;
 import ru.pochinka.pet.project.bankproject.enums.Currency;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 

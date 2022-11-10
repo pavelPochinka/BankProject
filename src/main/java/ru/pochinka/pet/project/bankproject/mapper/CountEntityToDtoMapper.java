@@ -26,7 +26,4 @@ public interface CountEntityToDtoMapper {
     default Currency mapCurrencyEnum(String currency){
         return Currency.valueOf(currency);
     }
-
-
-
 }

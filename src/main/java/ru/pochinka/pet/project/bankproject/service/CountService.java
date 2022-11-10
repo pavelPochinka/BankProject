@@ -1,10 +1,10 @@
-package ru.pochinka.pet.project.bankproject.services;
+package ru.pochinka.pet.project.bankproject.service;
 
 import org.springframework.stereotype.Service;
 import ru.pochinka.pet.project.bankproject.dto.CountDto;
 import ru.pochinka.pet.project.bankproject.entity.CountEntity;
 import ru.pochinka.pet.project.bankproject.exception.NotFoundException;
-import ru.pochinka.pet.project.bankproject.exception.NotValidNumberException;
+import ru.pochinka.pet.project.bankproject.exception.NotValidInputValueException;
 import ru.pochinka.pet.project.bankproject.mapper.CountEntityToDtoMapper;
 import ru.pochinka.pet.project.bankproject.repository.CountRepository;
 
@@ -22,12 +22,13 @@ public class CountService {
         this.countMapper = countMapper;
     }
 
+    // ** not correct
     public CountDto getByCount(String countStr){
         BigInteger countNumeric;
         try {
             countNumeric = BigInteger.valueOf(Long.parseLong(countStr));
         } catch (NumberFormatException e) {
-            throw  new NotValidNumberException(countStr);
+            throw  new NotValidInputValueException(countStr);
         }
         CountEntity count = countRepository.findByCount(countNumeric)
                 .orElseThrow(() -> new NotFoundException(String.format(NOT_FOUND_COUNT, countStr)));

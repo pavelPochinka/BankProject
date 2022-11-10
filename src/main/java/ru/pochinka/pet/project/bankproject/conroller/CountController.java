@@ -4,7 +4,7 @@ package ru.pochinka.pet.project.bankproject.conroller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.pochinka.pet.project.bankproject.dto.CountDto;
-import ru.pochinka.pet.project.bankproject.services.CountService;
+import ru.pochinka.pet.project.bankproject.service.CountService;
 
 @RestController
 @RequestMapping("count")
