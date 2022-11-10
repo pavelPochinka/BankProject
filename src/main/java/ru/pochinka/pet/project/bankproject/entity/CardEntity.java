@@ -22,6 +22,7 @@ public class CardEntity extends Persistable {
     /**
      * user id
      */
+
     @Column(name = "USER_ID", nullable = false)
     private UUID userId;
 

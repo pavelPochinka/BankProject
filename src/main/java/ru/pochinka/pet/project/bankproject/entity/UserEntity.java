@@ -16,11 +16,7 @@ public class UserEntity extends Persistable {
     /**
      * cards of owner
      */
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    @JoinColumn(name = "USER_ID", referencedColumnName = "OBJECT_ID")
+    @OneToMany(mappedBy="userId")
     private List<CardEntity> cards;
 
     /**

@@ -1,6 +1,7 @@
 package ru.pochinka.pet.project.bankproject.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.pochinka.pet.project.bankproject.dto.CardDto;
 import ru.pochinka.pet.project.bankproject.dto.request.RequestCardDto;
 import ru.pochinka.pet.project.bankproject.entity.CardEntity;
@@ -60,4 +61,14 @@ public class CardService {
         }
     }
 
+    @Transactional
+    public void deleteCardByNumber(BigInteger cardNumber) {
+        cardRepository.deleteByCardNumber(cardNumber);
+
+    }
+
+    @Transactional
+    public void deleteByCount(BigInteger count){
+        cardRepository.deleteByCount_Count(count);
+    }
 }

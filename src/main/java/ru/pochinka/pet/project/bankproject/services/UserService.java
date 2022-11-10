@@ -1,6 +1,7 @@
 package ru.pochinka.pet.project.bankproject.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.pochinka.pet.project.bankproject.dto.request.RequestUserDto;
 import ru.pochinka.pet.project.bankproject.dto.UserDto;
 import ru.pochinka.pet.project.bankproject.entity.UserEntity;
@@ -78,4 +79,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    @Transactional
+    public void deleteUserById(UUID id) {
+        userRepository.deleteByObjectId(id);
+    }
 }

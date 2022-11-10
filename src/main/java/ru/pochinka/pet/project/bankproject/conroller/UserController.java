@@ -10,11 +10,13 @@ import ru.pochinka.pet.project.bankproject.services.UserService;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("user")
 public class UserController {
 
+    private static final String SUCCESSFUL_DELETE_USER ="user was deleted";
     private static final String SUCCESSFUL_CREATING_USER ="user was created";
     private final UserService userService;
     private final UserFacade userFacade;
@@ -46,6 +48,12 @@ public class UserController {
     public @ResponseBody ResponseEntity<ResponseDto> addUser(@RequestBody RequestUserDto user){
         userFacade.saveNewUser(user);
         return ResponseEntity.ok(new ResponseDto(SUCCESSFUL_CREATING_USER));
+    }
+
+    @DeleteMapping("/del/byId/{id}")
+    public @ResponseBody ResponseEntity<ResponseDto> delUser(@PathVariable UUID id){
+        userService.deleteUserById(id);
+        return ResponseEntity.ok(new ResponseDto(SUCCESSFUL_DELETE_USER));
     }
 
 

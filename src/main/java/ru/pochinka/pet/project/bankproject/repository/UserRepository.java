@@ -16,4 +16,6 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
     List<UserEntity> findByFirstNameAndSecondName (String firstName, String secondName);
 
     Optional<UserEntity> findByObjectId(UUID userId);
+
+    void deleteByObjectId(UUID userId);
 }
