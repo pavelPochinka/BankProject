@@ -29,4 +29,13 @@ class UserServiceTest extends Specification{
         1 * userRepository.deleteByObjectId(id)
     }
 
+    def "getUserById"(){
+        setup:
+        def id = UUID.randomUUID()
+        when:
+        service.getUserById(id)
+        then:
+        1 * userRepository.findByObjectId(id)
+    }
+
 }

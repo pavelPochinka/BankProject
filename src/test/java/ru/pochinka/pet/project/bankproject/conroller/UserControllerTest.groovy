@@ -1,5 +1,6 @@
 package ru.pochinka.pet.project.bankproject.conroller
 
+import ru.pochinka.pet.project.bankproject.dto.request.RequestUpdateUserDto
 import ru.pochinka.pet.project.bankproject.dto.request.RequestUserDto
 import ru.pochinka.pet.project.bankproject.facade.UserFacade
 import spock.lang.Specification
@@ -26,5 +27,23 @@ class UserControllerTest extends Specification {
         controller.delete(id)
         then:
         1 * userFacade.delete(id)
+    }
+
+    def "update"(){
+        setup:
+        def updateUser = new RequestUpdateUserDto()
+        when:
+        controller.update(updateUser)
+        then:
+        1 * userFacade.update(updateUser)
+    }
+
+    def "getById"(){
+        setup:
+        def id = "3333b448-2460-4fd2-9183-8000de6f8333"
+        when:
+        controller.getById(id)
+        then:
+        1 * userFacade.getById(id)
     }
 }

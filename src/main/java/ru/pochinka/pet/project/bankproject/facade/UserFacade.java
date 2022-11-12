@@ -1,5 +1,7 @@
 package ru.pochinka.pet.project.bankproject.facade;
 
+import ru.pochinka.pet.project.bankproject.dto.UserDto;
+import ru.pochinka.pet.project.bankproject.dto.request.RequestUpdateUserDto;
 import ru.pochinka.pet.project.bankproject.dto.request.RequestUserDto;
 import ru.pochinka.pet.project.bankproject.dto.response.ResponseDto;
 
@@ -25,4 +27,19 @@ public interface UserFacade {
      */
     ResponseDto delete(String id);
 
+    /**
+     * Update user name
+     *
+     * @param updatedUser
+     * @return ResponseDto
+     */
+    ResponseDto update(RequestUpdateUserDto updatedUser);
+
+    /**
+     * Get user by id
+     *
+     * @param id
+     * @return UserDto
+     */
+    UserDto getById(String id);
 }

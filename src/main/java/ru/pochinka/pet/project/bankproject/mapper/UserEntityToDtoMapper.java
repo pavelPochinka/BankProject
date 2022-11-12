@@ -20,6 +20,7 @@ public abstract class UserEntityToDtoMapper {
     protected CardEntityToDtoMapper cardMapper;
 
     @Mapping(target = "cards", source = "cards", qualifiedByName = "mapCards")
+    @Mapping(target = "userId", source = "objectId")
     public abstract UserDto sourceToDestination(UserEntity source);
 
     @Mapping(target = "cards", ignore = true)

@@ -1,6 +1,8 @@
 package ru.pochinka.pet.project.bankproject.facade
 
 import ru.pochinka.pet.project.bankproject.dto.CardDto
+import ru.pochinka.pet.project.bankproject.dto.UserDto
+import ru.pochinka.pet.project.bankproject.dto.request.RequestUpdateUserDto
 import ru.pochinka.pet.project.bankproject.dto.request.RequestUserDto
 import ru.pochinka.pet.project.bankproject.entity.CardEntity
 import ru.pochinka.pet.project.bankproject.entity.UserEntity
@@ -8,7 +10,6 @@ import ru.pochinka.pet.project.bankproject.enums.UserResponse
 import ru.pochinka.pet.project.bankproject.facade.impl.UserFacadeImpl
 import ru.pochinka.pet.project.bankproject.mapper.CardEntityToDtoMapper
 import ru.pochinka.pet.project.bankproject.mapper.UserEntityToDtoMapper
-import ru.pochinka.pet.project.bankproject.repository.UserRepository
 import ru.pochinka.pet.project.bankproject.service.CardService
 import ru.pochinka.pet.project.bankproject.service.UserService
 import spock.lang.Specification
@@ -51,5 +52,32 @@ class UserFacadeTest extends Specification {
         facade.delete(idStr)
         then:
         1 * userService.deleteUserById(uuid)
+    }
+
+    def "getById"(){
+        setup:
+        def id = "3333b448-2460-4fd2-9183-8000de6f8333"
+        def uuidId = UUID.fromString(id)
+        def userEntity = new UserEntity(objectId: uuidId)
+        and:
+        userService.getUserById(uuidId) >> userEntity
+        when:
+        facade.getById(id)
+        then:
+        1 * userMapper.sourceToDestination(userEntity)
+    }
+
+    def "update"() {
+        setup:
+        def uuidId = UUID.randomUUID()
+        def updateUser = new RequestUpdateUserDto(userId: uuidId, firstName: "Arseniy", secondName: "Pochinka")
+        def userEntity = new UserEntity()
+        and:
+        userService.getUserById(uuidId) >> userEntity
+        when:
+        facade.update(updateUser)
+        then:
+        1 * userService.save(userEntity)
+
     }
 }

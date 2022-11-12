@@ -16,6 +16,10 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public UserEntity getUserById(UUID userId){
+        return userRepository.findByObjectId(userId);
+    }
+
     public UserEntity save(UserEntity user){
         return userRepository.save(user);
     }

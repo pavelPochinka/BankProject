@@ -1,6 +1,8 @@
 package ru.pochinka.pet.project.bankproject.facade.impl;
 
 import org.springframework.stereotype.Service;
+import ru.pochinka.pet.project.bankproject.dto.UserDto;
+import ru.pochinka.pet.project.bankproject.dto.request.RequestUpdateUserDto;
 import ru.pochinka.pet.project.bankproject.dto.request.RequestUserDto;
 import ru.pochinka.pet.project.bankproject.dto.response.ResponseDto;
 import ru.pochinka.pet.project.bankproject.entity.UserEntity;
@@ -50,5 +52,20 @@ public class UserFacadeImpl implements UserFacade {
         } catch (IllegalArgumentException e) {
             throw new NotValidInputValueException(id);
         }
+    }
+
+    @Override
+    public ResponseDto update(RequestUpdateUserDto updatedUser) {
+        UserEntity user = userService.getUserById(UUID.fromString(updatedUser.getUserId()));
+        user.setFirstName(updatedUser.getFirstName());
+        user.setSecondName(updatedUser.getSecondName());
+        userService.save(user);
+        return new ResponseDto(UserResponse.SUCCESSFUL_UPDATE.getMessage());
+
+    }
+
+    @Override
+    public UserDto getById(String id) {
+        return userMapper.sourceToDestination(userService.getUserById(UUID.fromString(id)));
     }
 }
