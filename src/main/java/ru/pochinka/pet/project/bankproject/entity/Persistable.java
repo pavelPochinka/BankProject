@@ -1,6 +1,7 @@
 package ru.pochinka.pet.project.bankproject.entity;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import java.util.UUID;
 
 @MappedSuperclass
 @Getter
+@Setter
 public abstract class Persistable {
 
     /**
