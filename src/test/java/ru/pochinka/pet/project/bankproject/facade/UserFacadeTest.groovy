@@ -1,7 +1,6 @@
 package ru.pochinka.pet.project.bankproject.facade
 
 import ru.pochinka.pet.project.bankproject.dto.CardDto
-import ru.pochinka.pet.project.bankproject.dto.UserDto
 import ru.pochinka.pet.project.bankproject.dto.request.RequestUpdateUserDto
 import ru.pochinka.pet.project.bankproject.dto.request.RequestUserDto
 import ru.pochinka.pet.project.bankproject.entity.CardEntity

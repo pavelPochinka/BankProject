@@ -3,11 +3,6 @@ package ru.pochinka.pet.project.bankproject.dto.response;
 import lombok.Getter;
 
 @Getter
-public class ResponseDto {
+public record ResponseDto(String message) {
 
-    private final String message;
-
-    public ResponseDto(String message) {
-        this.message = message;
-    }
 }
